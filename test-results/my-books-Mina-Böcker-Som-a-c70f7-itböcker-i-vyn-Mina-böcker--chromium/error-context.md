@@ -6,13 +6,13 @@
 # Error details
 
 ```
-Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
+Error: Timed out 3000ms waiting for expect(locator).toBeVisible()
 
 Locator: getByRole('heading', { name: 'Mina böcker' })
 Expected: visible
 Received: <element(s) not found>
 Call log:
-  - expect.toBeVisible with timeout 5000ms
+  - expect.toBeVisible with timeout 3000ms
   - waiting for getByRole('heading', { name: 'Mina böcker' })
 
     at C:\Users\46736\Desktop\Hemsidor\Skola\Testning\Laslistan\src\tests\my-books.spec.js:11:73
@@ -48,15 +48,18 @@ Call log:
    8 |     test('Som användare vill jag kunna se mina favoritböcker i vyn "Mina böcker".', async ({ page }) => {
    9 |         const MyBooksButton = page.getByRole('button', { name: 'Mina böcker' })
   10 |         await MyBooksButton.click()
-> 11 |         await expect(page.getByRole('heading', { name: 'Mina böcker'})).toBeVisible();
-     |                                                                         ^ Error: Timed out 5000ms waiting for expect(locator).toBeVisible()
+> 11 |         await expect(page.getByRole('heading', { name: 'Mina böcker'})).toBeVisible({ timeout: 3000 });
+     |                                                                         ^ Error: Timed out 3000ms waiting for expect(locator).toBeVisible()
   12 |     })
   13 |
   14 |     test('Som användare vill jag att det visas ett meddelande om jag inte har några favoritböcker ännu.', async ({ page }) => {
-  15 |         const textbox = page.getByRole('textbox', { name: 'När du valt, kommer dina favoritböcker att visas här.' })
-  16 |         await expect(textbox).toBeVisible();
-  17 |     })
+  15 |         const MyBooksButton = page.getByRole('button', { name: 'Mina böcker' })
+  16 |         await MyBooksButton.click()        
+  17 |
   18 |
-  19 |
-  20 | })
+  19 |         await expect(page.getByText('När du valt, kommer dina favoritböcker att visas här.')).toBeVisible();
+  20 |     })
+  21 |
+  22 |
+  23 | })
 ```
