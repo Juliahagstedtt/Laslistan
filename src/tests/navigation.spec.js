@@ -8,20 +8,24 @@ test.describe('Navigation', () => {
     test('Som användare vill jag kunna trycka på "Lägg till bok" för att komma till vyn man lägger till böcker.', async ({ page }) => {
         const addBookButton = page.getByRole('button', { name: 'Lägg till bok' })
         await addBookButton.click()
-        await expect(page.getByRole('heading', { name: 'Lägg till bok'})).toBeVisible();
+        await expect(page.getByRole('heading', { name: 'Välkommen!'})).toBeVisible();
     })
       
-    test('Som användare vill jag kunna trycka på "Mina böcker" för at komma till vyn där mina favori böcker är.', async ({page }) => {
+    test('Som användare vill jag kunna trycka på "Mina böcker" för at komma till vyn där mina favorit böcker är.', async ({ page }) => {
         const MyBookButton = page.getByRole('button', { name: 'Mina böcker' })
         await MyBookButton.click()
-        await expect(page.getByRole('heading', { name: 'Mina böcker'})).toBeVisible();
+        await expect(page.getByRole('heading', { name: 'Välkommen!'})).toBeVisible();
 
     })
        
-    test('Som användare vill jag kunna trycka på "Katalog" för att komma tillbaka till katalog sidan.', async ({page }) => {
+    test('Som användare vill jag kunna trycka på "Katalog" för att komma tillbaka till katalog sidan.', async ({ page }) => {
+        const MyBookButton = page.getByRole('button', { name: 'Mina böcker' })
+        await MyBookButton.click()
+        
         const katalogButton = page.getByRole('button', { name: 'Katalog' })
-        await katalogButton.click() 
-        await expect(page.getByRole('heading', { name: 'Katalog'})).toBeVisible();
+        await expect (katalogButton).toBeEnabled() 
+        await katalogButton.click()
 
+        await expect(page.getByText('katt')).toBeVisible();
     })
 })

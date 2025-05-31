@@ -11,7 +11,7 @@ Här kommer alla userstorys:
 
 3. Vyn lägga till bok
 - Som användare vill jag kunna lägga till en ny bok med titel och författare. 
-- Som användare vill jag få ett felmeddelande om jag försöker lägga till en bok utan titel.
+- Som användare vill jag att knappen "Lägg till bok" ska vara inaktiverad tills både titel och författare är ifyllda.
 
 4. Vyn mina böcker
 - Som användare vill jag kunna se mina favoritböcker i vyn "Mina böcker".

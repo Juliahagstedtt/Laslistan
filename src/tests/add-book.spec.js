@@ -9,7 +9,7 @@ test.describe('Lägg till bok', () => {
         
     }) 
        
-    test('Som användare vill jag få ett felmeddelande om jag försöker lägga till en bok utan titel.', () => {
+    test('Som användare vill jag att knappen "Lägg till bok" ska vara inaktiverad tills både titel och författare är ifyllda.', () => {
         
     })
         
