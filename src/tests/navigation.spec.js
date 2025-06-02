@@ -6,26 +6,38 @@ test.describe('Navigation', () => {
     })
        
     test('Som användare vill jag kunna trycka på "Lägg till bok" för att komma till vyn man lägger till böcker.', async ({ page }) => {
+        // Hitta knappen "Lägg till bok"
         const addBookButton = page.getByRole('button', { name: 'Lägg till bok' })
+        // Klicka på knappen
         await addBookButton.click()
+        // Kontrollera att vyn med rubriken "Välkommen!" visas
         await expect(page.getByRole('heading', { name: 'Välkommen!'})).toBeVisible();
     })
       
     test('Som användare vill jag kunna trycka på "Mina böcker" för at komma till vyn där mina favorit böcker är.', async ({ page }) => {
+        // Hitta knappen "Mina böcker"
         const MyBookButton = page.getByRole('button', { name: 'Mina böcker' })
+        // Klicka på knappen
         await MyBookButton.click()
+        // Kontrollera att vyn med rubriken "Välkommen!" visas
         await expect(page.getByRole('heading', { name: 'Välkommen!'})).toBeVisible();
 
     })
        
     test('Som användare vill jag kunna trycka på "Katalog" för att komma tillbaka till katalog sidan.', async ({ page }) => {
-        const MyBookButton = page.getByRole('button', { name: 'Mina böcker' })
+    // Gå först till "Mina böcker"-vyn för att sedan kunna testa att navigera tillbaka till katalogsidan.
+    // Detta är nödvändigt eftersom alla vyer har samma titel, "Välkommen!", vilket annars gör det svårt att se om sidbytet fungerar.
+    const MyBookButton = page.getByRole('button', { name: 'Mina böcker' })
         await MyBookButton.click()
-        
-        const katalogButton = page.getByRole('button', { name: 'Katalog' })
-        await expect (katalogButton).toBeEnabled() 
-        await katalogButton.click()
 
+        // Hitta knappen "Katalog"
+        const katalogButton = page.getByRole('button', { name: 'Katalog' })
+
+        // Kontrollera att knappen är aktiverad
+        await expect (katalogButton).toBeEnabled() 
+        // Klicka på "Katalog"
+        await katalogButton.click()
+        // Kontrollera att innehåll från katalogen visas
         await expect(page.getByText('katt')).toBeVisible();
     })
 })
