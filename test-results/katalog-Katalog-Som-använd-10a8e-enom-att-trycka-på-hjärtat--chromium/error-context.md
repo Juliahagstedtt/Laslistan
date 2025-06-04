@@ -1,7 +1,7 @@
 # Test info
 
 - Name: Katalog >> Som användare vill jag kunna favorit markera en bok genom att trycka på hjärtat.
-- Location: C:\Users\46736\Desktop\Hemsidor\Skola\Testning\Laslistan\src\tests\favorite-book.spec.js:8:9
+- Location: C:\Users\46736\Desktop\Hemsidor\Skola\Testning\Laslistan\src\tests\katalog.spec.js:8:9
 
 # Error details
 
@@ -10,7 +10,7 @@ Error: locator.click: Test timeout of 30000ms exceeded.
 Call log:
   - waiting for getByRole('button', { name: 'Favorit' })
 
-    at C:\Users\46736\Desktop\Hemsidor\Skola\Testning\Laslistan\src\tests\favorite-book.spec.js:10:30
+    at C:\Users\46736\Desktop\Hemsidor\Skola\Testning\Laslistan\src\tests\katalog.spec.js:10:30
 ```
 
 # Page snapshot

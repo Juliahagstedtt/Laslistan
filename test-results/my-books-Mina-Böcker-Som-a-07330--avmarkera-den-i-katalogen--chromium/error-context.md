@@ -1,23 +1,30 @@
 # Test info
 
-- Name: Mina Böcker >> Som användare vill jag kunna se mina favoritböcker i vyn "Mina böcker".
-- Location: C:\Users\46736\Desktop\Hemsidor\Skola\Testning\Laslistan\src\tests\my-books.spec.js:7:9
+- Name: Mina Böcker >> Som användare vill jag kunna ta bort en bok från "Mina böcker" genom att avmarkera den i katalogen.
+- Location: C:\Users\46736\Desktop\Hemsidor\Skola\Testning\Laslistan\src\tests\my-books.spec.js:35:9
 
 # Error details
 
 ```
-Error: Timed out 5000ms waiting for expect(locator).toBeEnabled()
-
-Locator: getByRole('button', { name: 'Katalog' })
-Expected: enabled
-Received: disabled
+Error: locator.click: Test timeout of 30000ms exceeded.
 Call log:
-  - expect.toBeEnabled with timeout 5000ms
   - waiting for getByRole('button', { name: 'Katalog' })
-    9 × locator resolved to <button disabled data-testid="catalog"> Katalog </button>
-      - unexpected value "disabled"
+    - locator resolved to <button disabled data-testid="catalog"> Katalog </button>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    57 × waiting for element to be visible, enabled and stable
+       - element is not enabled
+     - retrying click action
+       - waiting 500ms
 
-    at C:\Users\46736\Desktop\Hemsidor\Skola\Testning\Laslistan\src\tests\my-books.spec.js:11:38
+    at C:\Users\46736\Desktop\Hemsidor\Skola\Testning\Laslistan\src\tests\my-books.spec.js:37:65
 ```
 
 # Page snapshot
@@ -62,8 +69,7 @@ Call log:
    8 |
    9 |     // 1. Klicka på "Katalog" (om du inte redan är där)
   10 |         const katalogButton = page.getByRole('button', { name: 'Katalog' })
-> 11 |         await expect (katalogButton).toBeEnabled() 
-     |                                      ^ Error: Timed out 5000ms waiting for expect(locator).toBeEnabled()
+  11 |         await expect (katalogButton).toBeEnabled() 
   12 |         await katalogButton.click()
   13 |
   14 |     // 2. Klicka på ett hjärta för att lägga till en bok som favorit
@@ -89,7 +95,8 @@ Call log:
   34 |
   35 |     test('Som användare vill jag kunna ta bort en bok från "Mina böcker" genom att avmarkera den i katalogen.', async ({ page }) => {
   36 |         // 1. Klicka till katalog och på hjärta för favoritmarkera
-  37 |             await page.getByRole('button', { name: 'Katalog' }).click();
+> 37 |             await page.getByRole('button', { name: 'Katalog' }).click();
+     |                                                                 ^ Error: locator.click: Test timeout of 30000ms exceeded.
   38 |             const favoriteButtonAgain = page.getByRole('button', { name: 'Favorit' }).first();
   39 |             await favoriteButtonAgain.click();
   40 |

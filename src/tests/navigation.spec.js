@@ -10,8 +10,8 @@ test.describe('Navigation', () => {
         const addBookButton = page.getByRole('button', { name: 'Lägg till bok' })
         // Klicka på knappen
         await addBookButton.click()
-        // Kontrollera att vyn med rubriken "Välkommen!" visas
-        await expect(page.getByRole('heading', { name: 'Välkommen!'})).toBeVisible();
+        // Kontrollera att vyn med texten Titel visas
+        await expect(page.getByText('Titel')).toBeVisible();
     })
       
     test('Som användare vill jag kunna trycka på "Mina böcker" för at komma till vyn där mina favorit böcker är.', async ({ page }) => {
@@ -19,9 +19,8 @@ test.describe('Navigation', () => {
         const MyBookButton = page.getByRole('button', { name: 'Mina böcker' })
         // Klicka på knappen
         await MyBookButton.click()
-        // Kontrollera att vyn med rubriken "Välkommen!" visas
-        await expect(page.getByRole('heading', { name: 'Välkommen!'})).toBeVisible();
-
+        // Kontrollera att vyn med denna text visas
+        await expect(page.getByText('När du valt, kommer dina favoritböcker att visas här.')).toBeVisible();
     })
        
     test('Som användare vill jag kunna trycka på "Katalog" för att komma tillbaka till katalog sidan.', async ({ page }) => {
