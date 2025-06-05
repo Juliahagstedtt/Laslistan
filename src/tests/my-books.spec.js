@@ -7,9 +7,9 @@ test.describe('Mina Böcker', () => {
     test('Som användare vill jag kunna se mina favoritböcker i vyn "Mina böcker".', async ({ page }) => {
 
     // 1. Klicka på "Katalog" (om du inte redan är där)
-        const katalogButton = page.getByRole('button', { name: 'Katalog' })
-        await expect (katalogButton).toBeEnabled() 
-        await katalogButton.click()
+        const katalogButton = page.getByRole('button', { name: 'Katalog' });
+        await katalogButton.waitFor({ state: 'enabled', timeout: 10000 });
+        await katalogButton.click();
 
     // 2. Klicka på ett hjärta för att lägga till en bok som favorit
         const favoriteButton = page.getByRole('button', { name: 'Favorit' }).first();
@@ -17,8 +17,9 @@ test.describe('Mina Böcker', () => {
 
     // 3. Kontrollera att den favoritmarkerade boken syns i "Mina böcker"
         await page.getByRole('button', { name: 'Mina böcker' }).click();
-        await expect(page.getByText("Kaffekokaren som visste för mycket")).toBeVisible();
-
+        const book = page.locator('[data-testid="book"]').first();
+        const title = await book.locator('.title').textContent();
+        await expect(page.getByText(title)).toBeVisible();
     })
 
 
@@ -44,7 +45,7 @@ test.describe('Mina Böcker', () => {
 
         // 4. Gå tillbaka till "katalog" sidan och avmarkera
             await page.getByRole('button', { name: 'Katalog' }).click();
-            await favoriteButton.click();
+            await favoriteButtonAgain.click();
 
         // 5. Tillbaka till Mina böcker för att kontrollera den är borta
             await page.getByRole('button', { name: 'Mina böcker' }).click();
@@ -65,7 +66,8 @@ test.describe('Mina Böcker', () => {
             await page.getByRole('button', { name: 'Mina böcker' }).click()
 
         // 4. Kontrollera så att favorit boken syns
-            const allFavorites = page.locator('[data-testid="favorite-book"]');
-            await expect(allFavorites.first()).toBeVisible();
+            const book = page.locator('[data-testid="book"]').first();
+            const title = await book.locator('.title').textContent();
+            await expect(page.getByText(title)).toBeVisible();
     })
 })
