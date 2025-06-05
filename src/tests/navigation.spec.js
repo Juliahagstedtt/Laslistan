@@ -4,13 +4,13 @@ test.describe('Navigation', () => {
     test.beforeEach(async ({ page }) => {
         await page.goto('https://tap-ht24-testverktyg.github.io/exam-template/')
     })
-    // Jag behöver fixa unik text/titel per test här
+
     test('Som användare vill jag kunna trycka på "Lägg till bok" för att komma till vyn man lägger till böcker.', async ({ page }) => {
         // Hitta knappen "Lägg till bok"
         const addBookButton = page.getByRole('button', { name: 'Lägg till bok' })
         // Klicka på knappen
         await addBookButton.click()
-        // Kontrollera att vyn med texten Titel visas
+        // Kontrollera att vyn med texten Titel visas, har ändrat navigeringstesterna så att de kollar efter unik text på varje sida annars är det svårt att veta om sidbytet fungerar.
         await expect(page.getByText('Titel')).toBeVisible();
     })
       
