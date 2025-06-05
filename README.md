@@ -1,5 +1,6 @@
 Jag har skapat mappen src/tests och lagt in alla testfiler där.
-Sedan så har jag gjort klart mina userstorys från början hade jag 7-8. Nu har jag sammanlagt 15 stycken.
+Sedan så har jag gjort klart mina userstorys. 
+Från början hade jag 7-8. Nu har jag sammanlagt 15 stycken.
 
 Nu ska jag börja med testerna.
 
