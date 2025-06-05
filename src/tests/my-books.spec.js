@@ -4,6 +4,16 @@ test.describe('Mina Böcker', () => {
     test.beforeEach(async ({ page }) => {
         await page.goto('https://tap-ht24-testverktyg.github.io/exam-template/')
     })
+
+    test('Som användare vill jag att det visas ett meddelande om jag inte har några favoritböcker ännu.', async ({ page }) => {
+        // Gå till "Mina böcker"-vyn
+        const MyBooksButton = page.getByRole('button', { name: 'Mina böcker' })
+        await MyBooksButton.click()        
+
+        // Verifiera att ett meddelande visas när listan med favoritböcker är tom.
+        await expect(page.getByText('När du valt, kommer dina favoritböcker att visas här.')).toBeVisible();
+    }) 
+    
     test('Som användare vill jag kunna se mina favoritböcker i vyn "Mina böcker".', async ({ page }) => {
 
     // 1. Klicka på "Katalog" (om du inte redan är där)
@@ -21,17 +31,6 @@ test.describe('Mina Böcker', () => {
         const title = await book.locator('.title').textContent();
         await expect(page.getByText(title)).toBeVisible();
     })
-
-
-    test('Som användare vill jag att det visas ett meddelande om jag inte har några favoritböcker ännu.', async ({ page }) => {
-        // Gå till "Mina böcker"-vyn
-        const MyBooksButton = page.getByRole('button', { name: 'Mina böcker' })
-        await MyBooksButton.click()        
-
-        // Verifiera att ett meddelande visas när listan med favoritböcker är tom.
-        await expect(page.getByText('När du valt, kommer dina favoritböcker att visas här.')).toBeVisible();
-    })
-
 
     test('Som användare vill jag kunna ta bort en bok från "Mina böcker" genom att avmarkera den i katalogen.', async ({ page }) => {
         // 1. Klicka till katalog och på hjärta för favoritmarkera
